@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khabib's Burger Shop</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agu+Display&display=swap" rel="stylesheet">
+</head>
+  
+<body>
+  <!-- Header Navigation -->
+  <header>
+      <div id="nav">
+          <div class="logo">
+              <span>The Smesh Borger Joint 🍔</span>
+          </div>
+          <nav>
+              <ul class="nav-links">
+                  <li><a href="#hero">Home</a></li>
+                  <li><a href="#menu">Ingredients</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="#mailto:thesmeshborgerjoint@ufc.com">Contact</a></li>
+              </ul>
+          </nav>
+          <div id="burger-menu">
+              <i class="fas fa-bars"></i>
+          </div>
+      </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-text">
+      <h1 id="welcome">Welcome to Khabib's Burger Shop</h1>
+      <p id="motto">The undefeated champions of taste!</p>
+      <a href="#menu" class="cta">Check Our Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <h2 class="menu-title" data-title="Our Signature Ingredients">Our Signature Ingredients</h2>
+    <div class="ingredient-cards">
+      <div class="card">
+        <h3>Khabib's Tomato 🍅</h3>
+        <p>Fresh and juicy, just like Khabib's legacy.</p>
+        <strong>$0.30</strong>
+      </div>
+      <div class="card">
+        <h3>Hasbullah's Onion 🧅</h3>
+        <p>A punch of flavor with every layer.</p>
+        <strong>$0.40</strong>
+      </div>
+      <div class="card">
+        <h3>Islam's Lettuce 🥬</h3>
+        <p>Clean, crisp, and free!</p>
+        <strong>$0.00</strong>
+      </div>
+      <div class="card">
+        <h3>Champion's Cheese 🧀</h3>
+        <p>Melty goodness for your victory feast.</p>
+        <strong>$0.75</strong>
+      </div>
+      <div class="card">
+        <h3>No Mercy Patty 🥩</h3>
+        <p>Packed with protein for the ultimate fight.</p>
+        <strong>$1.25</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Build Your Burger Section -->
+  <section id="build" class="build-section">
+    <h2 class="section-title">Build Your Champion Burger</h2>
+    <div id="builder">
+      <div id="order-area">
+        <div class="burger-part" id="top-bun">🥯</div>
+        <div id="burger-content"></div>
+        <div class="burger-part" id="bottom-bun">🥯</div>
+      </div>
+      <div id="ingredients">
+        <button class="ingredient-btn" data-ingredient="tomato" data-price="0.30">🍅 Add Tomato</button>
+        <button class="ingredient-btn" data-ingredient="onion" data-price="0.40">🧅 Add Onion</button>
+        <button class="ingredient-btn" data-ingredient="lettuce" data-price="0.00">🥬 Add Lettuce</button>
+        <button class="ingredient-btn" data-ingredient="cheese" data-price="0.75">🧀 Add Cheese</button>
+        <button class="ingredient-btn" data-ingredient="patty" data-price="1.25">🍖 Add Patty</button>
+      </div>
+      <!-- Price Display and Add to Basket Button -->
+      <div id="burger-price">
+        <strong>Total Price: $<span id="price">0.00</span></strong>
+      </div>
+      <button id="add-to-basket-btn">Add to Basket</button>
+    </div>
+  </section>
+
+  <!-- Basket Section -->
+  <section id="basket" class="basket-section">
+      <h2 id="shopping-basket-title">Your Shopping Basket</h2>
+      <div id="shopping-basket">
+          <div id="basket-items">No items yet!</div>
+          <div id="total-cost">Total: $0.00</div>
+          <button id="checkout-btn">Checkout</button>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 The Smesh Borger Joint | Built with discipline and undefeated flavors!</p>
+    <div class="footer-ufc">
+      <p>Follow Khabib’s UFC legacy and take your burger game to the next level!</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
