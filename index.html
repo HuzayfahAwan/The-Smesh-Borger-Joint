@@ -4,68 +4,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khabib's Burger Shop</title>
+  <title>The Smesh Borger Joint</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Agu+Display&display=swap" rel="stylesheet">
 </head>
-  
+
 <body>
-  <!-- Header Navigation -->
+  <!-- Confetti canvas (full-screen overlay, pointer-events: none) -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Smash Mode floating button -->
+  <button id="smash-btn" class="smash-float-btn" title="Do not press">🥊</button>
+
+  <!-- Header -->
   <header>
-      <div id="nav">
-          <div class="logo">
-              <span>The Smesh Borger Joint 🍔</span>
-          </div>
-          <nav>
-              <ul class="nav-links">
-                  <li><a href="#hero">Home</a></li>
-                  <li><a href="#menu">Ingredients</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="mailto:thesmeshborgerjoint@ufc.com">Contact</a></li>
-              </ul>
-          </nav>
-          <div id="burger-menu">
-              <i class="fas fa-bars"></i>
-          </div>
-      </div>
+    <div id="nav">
+      <div class="logo">The Smesh Borger Joint 🍔</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Ingredients</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:thesmeshborgerjoint@ufc.com">Contact</a></li>
+        </ul>
+      </nav>
+      <div id="order-count"></div>
+      <button id="burger-menu" aria-label="Toggle menu">&#9776;</button>
+    </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="hero" class="hero-section">
     <div class="hero-text">
       <h1 id="welcome">Welcome to Khabib's Burger Shop</h1>
       <p id="motto">The undefeated champions of taste!</p>
-      <a href="#menu" class="cta">Check Our Menu</a>
+      <a href="#build" class="cta">Build Your Burger</a>
     </div>
   </section>
 
-  <!-- Menu Section -->
+  <!-- Menu / Ingredient showcase -->
   <section id="menu" class="menu-section">
     <h2 class="menu-title" data-title="Our Signature Ingredients">Our Signature Ingredients</h2>
+    <p class="drag-hint">💡 Drag any card onto the burger builder to add it!</p>
     <div class="ingredient-cards">
-      <div class="card">
+      <div class="card" style="--card-index:1" draggable="true" data-ingredient="tomato">
         <h3>Khabib's Tomato 🍅</h3>
         <p>Fresh and juicy, just like Khabib's legacy.</p>
         <strong>$0.30</strong>
       </div>
-      <div class="card">
+      <div class="card" style="--card-index:2" draggable="true" data-ingredient="onion">
         <h3>Hasbullah's Onion 🧅</h3>
         <p>A punch of flavor with every layer.</p>
         <strong>$0.40</strong>
       </div>
-      <div class="card">
+      <div class="card" style="--card-index:3" draggable="true" data-ingredient="lettuce">
         <h3>Islam's Lettuce 🥬</h3>
         <p>Clean, crisp, and free!</p>
         <strong>$0.00</strong>
       </div>
-      <div class="card">
+      <div class="card" style="--card-index:4" draggable="true" data-ingredient="cheese">
         <h3>Champion's Cheese 🧀</h3>
         <p>Melty goodness for your victory feast.</p>
         <strong>$0.75</strong>
       </div>
-      <div class="card">
+      <div class="card" style="--card-index:5" draggable="true" data-ingredient="patty">
         <h3>No Mercy Patty 🥩</h3>
         <p>Packed with protein for the ultimate fight.</p>
         <strong>$1.25</strong>
@@ -73,46 +80,110 @@
     </div>
   </section>
 
-  <!-- Build Your Burger Section -->
+  <!-- Build section -->
   <section id="build" class="build-section">
     <h2 class="section-title">Build Your Champion Burger</h2>
-    <div id="builder">
-      <div id="order-area">
-        <div class="burger-part" id="top-bun">🥯</div>
-        <div id="burger-content"></div>
-        <div class="burger-part" id="bottom-bun">🥯</div>
+
+    <div class="build-layout">
+
+      <!-- Left: interactive builder -->
+      <div id="builder">
+
+        <div id="order-area">
+          <div class="drop-hint">Drop it here! 🎯</div>
+          <div class="burger-part" id="top-bun">🥯</div>
+          <div id="burger-content"></div>
+          <div class="burger-part" id="bottom-bun">🥯</div>
+        </div>
+
+        <div class="builder-top-actions">
+          <button id="khabib-special-btn">🏆 Khabib's Special</button>
+          <button id="clear-burger-btn">✕ Clear</button>
+        </div>
+
+        <div id="ingredients">
+          <button class="ingredient-btn" data-ingredient="tomato" data-price="0.30" draggable="true">🍅 Tomato <span class="ing-count"></span></button>
+          <button class="ingredient-btn" data-ingredient="onion"  data-price="0.40" draggable="true">🧅 Onion  <span class="ing-count"></span></button>
+          <button class="ingredient-btn" data-ingredient="lettuce" data-price="0.00" draggable="true">🥬 Lettuce <span class="ing-count"></span></button>
+          <button class="ingredient-btn" data-ingredient="cheese" data-price="0.75" draggable="true">🧀 Cheese <span class="ing-count"></span></button>
+          <button class="ingredient-btn" data-ingredient="patty"  data-price="1.25" draggable="true">🥩 Patty  <span class="ing-count"></span></button>
+        </div>
+
+        <p class="shortcut-hint">⌨️ <kbd>T</kbd>omato &middot; <kbd>O</kbd>nion &middot; <kbd>L</kbd>ettuce &middot; <kbd>C</kbd>heese &middot; <kbd>P</kbd>atty &middot; <kbd>Esc</kbd> Clear</p>
+
+        <div class="burger-name-row">
+          <input type="text" id="burger-name" placeholder="Name your creation..." maxlength="40">
+          <button id="generate-name-btn">🎲 Generate</button>
+        </div>
+
+        <div class="builder-bottom-actions">
+          <div id="burger-price">Total: $<span id="price">0.00</span></div>
+          <button id="add-to-basket-btn">Add to Basket 🛒</button>
+        </div>
+
       </div>
-      <div id="ingredients">
-        <button class="ingredient-btn" data-ingredient="tomato" data-price="0.30">🍅 Add Tomato</button>
-        <button class="ingredient-btn" data-ingredient="onion" data-price="0.40">🧅 Add Onion</button>
-        <button class="ingredient-btn" data-ingredient="lettuce" data-price="0.00">🥬 Add Lettuce</button>
-        <button class="ingredient-btn" data-ingredient="cheese" data-price="0.75">🧀 Add Cheese</button>
-        <button class="ingredient-btn" data-ingredient="patty" data-price="1.25">🍖 Add Patty</button>
+
+      <!-- Right: live nutrition facts label -->
+      <div class="nf-panel" id="nutrition-panel">
+        <div class="nf-title">Nutrition Facts</div>
+        <div class="nf-serving">Serving Size 1 Smesh Borger</div>
+        <div class="nf-calories-block">
+          <span class="nf-cal-label">Calories</span>
+          <span id="nf-calories">120</span>
+        </div>
+        <div class="nf-bar thick"></div>
+        <div class="nf-daily-label">% Daily Value*</div>
+        <div class="nf-row">
+          <span><b>Total Fat</b> <span id="nf-fat">2.0</span>g</span>
+          <span id="nf-fat-pct">3%</span>
+        </div>
+        <div class="nf-row indent">
+          <span>Saturated Fat 0g</span>
+          <span>0%</span>
+        </div>
+        <div class="nf-row">
+          <span><b>Total Carbs</b> <span id="nf-carbs">22</span>g</span>
+          <span id="nf-carbs-pct">8%</span>
+        </div>
+        <div class="nf-row indent">
+          <span>Dietary Fiber 1g</span>
+          <span>4%</span>
+        </div>
+        <div class="nf-row thick-bottom">
+          <span><b>Protein</b> <span id="nf-protein">4</span>g</span>
+          <span></span>
+        </div>
+        <div class="nf-row">
+          <span><b>Sodium</b> <span id="nf-sodium">200</span>mg</span>
+          <span id="nf-sodium-pct">9%</span>
+        </div>
+        <div class="nf-disclaimer">
+          * UFC athletes require 5,000% of everything.<br>
+          Khabib is not responsible for submissions caused by overconsumption.
+        </div>
       </div>
-      <!-- Price Display and Add to Basket Button -->
-      <div id="burger-price">
-        <strong>Total Price: $<span id="price">0.00</span></strong>
-      </div>
-      <button id="add-to-basket-btn">Add to Basket</button>
+
     </div>
   </section>
 
-  <!-- Basket Section -->
+  <!-- Basket -->
   <section id="basket" class="basket-section">
-      <h2 id="shopping-basket-title">Your Shopping Basket</h2>
-      <div id="shopping-basket">
-          <div id="basket-items">No items yet!</div>
-          <div id="total-cost">Total: $0.00</div>
-          <button id="checkout-btn">Checkout</button>
+    <h2 id="shopping-basket-title">Your Shopping Basket</h2>
+    <div id="shopping-basket">
+      <div id="basket-items"></div>
+      <div class="discount-row">
+        <input type="text" id="discount-input" placeholder="Enter promo code (try SMESH 😏)" maxlength="20">
+        <button id="apply-discount-btn">Apply</button>
       </div>
+      <div id="total-cost">Total: $0.00</div>
+      <button id="checkout-btn">Checkout 🎉</button>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 The Smesh Borger Joint | Built with discipline and undefeated flavors!</p>
-    <div class="footer-ufc">
-      <p>Follow Khabib’s UFC legacy and take your burger game to the next level!</p>
-    </div>
+    <p>&copy; 2025 The Smesh Borger Joint &mdash; Built with discipline and undefeated flavors!</p>
+    <p class="footer-sub">Follow Khabib's UFC legacy and take your burger game to the next level!</p>
   </footer>
 
   <script src="script.js"></script>
